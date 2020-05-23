@@ -2,7 +2,7 @@
 
 namespace trivia_kata
 {
-    public class GameRunner
+    public static class GameRunner
     {
         private static bool _notAWinner;
 
@@ -21,13 +21,9 @@ namespace trivia_kata
                 aGame.Roll(rand.Next(5) + 1);
 
                 if (rand.Next(9) == 7)
-                {
                     _notAWinner = aGame.WrongAnswer();
-                }
                 else
-                {
                     _notAWinner = aGame.WasCorrectlyAnswered();
-                }
             } while (_notAWinner);
         }
     }
