@@ -31,17 +31,12 @@ namespace trivia_kata
             }
         }
 
-        public string CreateRockQuestion(int index)
+        private static string CreateRockQuestion(int index)
         {
             return "Rock Question " + index;
         }
 
-        public bool IsPlayable()
-        {
-            return HowManyPlayers() >= 2;
-        }
-
-        public bool Add(string playerName)
+        public void Add(string playerName)
         {
             _players.Add(playerName);
             _places[HowManyPlayers()] = 0;
@@ -50,10 +45,9 @@ namespace trivia_kata
 
             Console.WriteLine(playerName + " was added");
             Console.WriteLine("They are player number " + _players.Count);
-            return true;
         }
 
-        public int HowManyPlayers()
+        private int HowManyPlayers()
         {
             return _players.Count;
         }
@@ -118,25 +112,31 @@ namespace trivia_kata
                 _sportsQuestions.RemoveFirst();
             }
 
-            if (CurrentCategory() == "Rock")
-            {
-                Console.WriteLine(_rockQuestions.First());
-                _rockQuestions.RemoveFirst();
-            }
+            if (CurrentCategory() != "Rock") return;
+            
+            Console.WriteLine(_rockQuestions.First());
+            _rockQuestions.RemoveFirst();
         }
 
         private string CurrentCategory()
         {
-            if (_places[_currentPlayer] == 0) return "Pop";
-            if (_places[_currentPlayer] == 4) return "Pop";
-            if (_places[_currentPlayer] == 8) return "Pop";
-            if (_places[_currentPlayer] == 1) return "Science";
-            if (_places[_currentPlayer] == 5) return "Science";
-            if (_places[_currentPlayer] == 9) return "Science";
-            if (_places[_currentPlayer] == 2) return "Sports";
-            if (_places[_currentPlayer] == 6) return "Sports";
-            if (_places[_currentPlayer] == 10) return "Sports";
-            return "Rock";
+            switch (_places[_currentPlayer])
+            {
+                case 0:
+                case 4:
+                case 8:
+                    return "Pop";
+                case 1:
+                case 5:
+                case 9:
+                    return "Science";
+                case 2:
+                case 6:
+                case 10:
+                    return "Sports";
+                default:
+                    return "Rock";
+            }
         }
 
         public bool WasCorrectlyAnswered()
@@ -165,7 +165,7 @@ namespace trivia_kata
             }
 
             {
-                Console.WriteLine("Answer was corrent!!!!");
+                Console.WriteLine("Answer was correct!!!!");
                 _purses[_currentPlayer]++;
                 Console.WriteLine(_players[_currentPlayer]
                                   + " now has "
@@ -173,6 +173,7 @@ namespace trivia_kata
                                   + " Gold Coins.");
 
                 var winner = DidPlayerWin();
+                
                 _currentPlayer++;
                 if (_currentPlayer == _players.Count) _currentPlayer = 0;
 
@@ -188,13 +189,14 @@ namespace trivia_kata
 
             _currentPlayer++;
             if (_currentPlayer == _players.Count) _currentPlayer = 0;
+            
             return true;
         }
 
 
         private bool DidPlayerWin()
         {
-            return !(_purses[_currentPlayer] == 6);
+            return _purses[_currentPlayer] != 6;
         }
     }
 }
