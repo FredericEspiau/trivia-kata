@@ -3,7 +3,7 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <RootNamespace>trivia_kata</RootNamespace>
-
+        <GenerateProgramFile>false</GenerateProgramFile>
         <IsPackable>false</IsPackable>
     </PropertyGroup>
 

@@ -13,8 +13,9 @@
 /httpRequests/
 
 
-# Created by https://www.gitignore.io/api/rider,csharp,visualstudio
-# Edit at https://www.gitignore.io/?templates=rider,csharp,visualstudio
+
+# Created by https://www.gitignore.io/api/rider,csharp,visualstudio,visualstudiocode
+# Edit at https://www.gitignore.io/?templates=rider,csharp,visualstudio,visualstudiocode
 
 ### Csharp ###
 ## Ignore Visual Studio temporary files, build results, and
@@ -436,6 +437,17 @@ fabric.properties
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
 
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+
 ### VisualStudio ###
 
 # User-specific files
@@ -592,4 +604,4 @@ fabric.properties
 
 # Backup folder for Package Reference Convert tool in Visual Studio 2017
 
-# End of https://www.gitignore.io/api/rider,csharp,visualstudio
+# End of https://www.gitignore.io/api/rider,csharp,visualstudio,visualstudiocode
