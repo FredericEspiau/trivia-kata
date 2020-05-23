@@ -1,5 +1,7 @@
-﻿using System;
+﻿using trivia_kata.NumberGenerator;
+using trivia_kata.TextWriter;
 using Console = trivia_kata.TextWriter.Console;
+using Random = trivia_kata.NumberGenerator.Random;
 
 namespace trivia_kata
 {
@@ -7,22 +9,25 @@ namespace trivia_kata
     {
         private static bool _notAWinner;
 
-        public static void Main()
+        public static void Run(ITextWriter textWriter, INumberGenerator numberGenerator)
         {
-            var aGame = new Game(new Console());
+            var aGame = new Game(textWriter);
 
             aGame.Add("Chet");
             aGame.Add("Pat");
             aGame.Add("Sue");
 
-            var rand = new Random();
-
             do
             {
-                aGame.Roll(rand.Next(5) + 1);
+                aGame.Roll(numberGenerator.Next(5) + 1);
 
-                _notAWinner = rand.Next(9) == 7 ? aGame.WrongAnswer() : aGame.WasCorrectlyAnswered();
+                _notAWinner = numberGenerator.Next(9) == 7 ? aGame.WrongAnswer() : aGame.WasCorrectlyAnswered();
             } while (_notAWinner);
+        }
+
+        public static void Main()
+        {
+            Run(new Console(), new Random());
         }
     }
 }
