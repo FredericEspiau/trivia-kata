@@ -1,4 +1,5 @@
 ﻿using System;
+using Console = trivia_kata.TextWriter.Console;
 
 namespace trivia_kata
 {
@@ -8,7 +9,7 @@ namespace trivia_kata
 
         public static void Main()
         {
-            var aGame = new Game();
+            var aGame = new Game(new Console());
 
             aGame.Add("Chet");
             aGame.Add("Pat");
