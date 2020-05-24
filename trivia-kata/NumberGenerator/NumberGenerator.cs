@@ -11,7 +11,7 @@
         }
         public int Next(int max)
         {
-            return Values[Index++] % max;
+            return Values[Index++ % Values.Length] % max;
 
         }
     }

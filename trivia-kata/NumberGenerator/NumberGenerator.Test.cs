@@ -13,6 +13,7 @@ namespace trivia_kata.NumberGenerator
             Assert.Equal(2, generator.Next(5));
             Assert.Equal(4, generator.Next(5));
             Assert.Equal(1, generator.Next(3));
+            Assert.Equal(0, generator.Next(3));
         }
     }
 }
